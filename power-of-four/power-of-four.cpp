@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool isPowerOfFour(int n) {
-        int i;
+         int i;
         bool ans;
         if(n>10){
         for(i=0;i<=sqrt(n);i++){
