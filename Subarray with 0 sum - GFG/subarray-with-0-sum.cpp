@@ -14,40 +14,32 @@ class Solution{
     bool subArrayExists(int arr[], int n)
     {
         //Your code here
-      bool flag=false;
-      for(int x=0;x<n;x++)
-      {
-          if(arr[x]==0)
-            return  true;
-          
-          if(arr[x]<0)
-                flag=true;
-              
-      }
-      
-      if(!flag)
-      return false;
-      
-      
-      for(int i=0;i<n;i++)
-      {
-          int sum=arr[i];
-          
-          for(int j=i+1;j<n;j++)
-          {
-       
-          sum=sum+arr[j];
-          
-          
+        bool ans=false;
         
-           if(sum==0)
-          return true;
-          }
-      }
-      
-      return false;
-   
-   
+        for(int i=0;i<n;i++){
+            if(arr[i]==0){
+                return true;
+            }
+            if(arr[i]<0){
+                ans=true;
+            }
+        }
+        if(!ans){
+            return false;
+        }
+        for(int i=0;i<n;i++){
+            int sum=arr[i];
+            for(int j=i+1;j<n;j++){
+                sum+=arr[j];
+                if(sum==0){
+                    return true;
+                }
+
+            }
+            
+        }
+        
+        return false;
         
         
     }
