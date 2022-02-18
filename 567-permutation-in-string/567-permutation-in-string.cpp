@@ -1,17 +1,28 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        vector<int> f_s1(26,0); vector<int> f_s2(26,0); //frequency tables
-        int k=s1.size(), n=s2.size(), i;
-        if(k>n)return 0;
-        for(i=0;i<k;i++){   
-            f_s1[s1[i]-'a']++;  f_s2[s2[i]-'a']++; //initialise the tables
+        unordered_map<char,int> m;
+        unordered_map<char,int> n;
+        int count=0,el=0,i=0;
+        
+        if(s1.length()>s2.length()){
+            return false;
         }
-        if(f_s1 == f_s2)return 1;
-        for(i;i<n;i++){
-            f_s2[s2[i-k]-'a']--; f_s2[s2[i]-'a']++; //reset window with new element
-            if(f_s1 == f_s2)return 1;
+        for(int i=0;i<s1.length();i++){
+            n[s1[i]]++;
         }
-        return 0;
+        while(i<=s2.size()-s1.size()){
+            for(int j=i;j<s1.length()+i;j++){
+                m[s2[j]]++;
+            }
+            if(m==n){
+                return true;
+            }
+            i++;
+            m.clear();
+        }
+        return false;
+        
+        
     }
 };
