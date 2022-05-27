@@ -12,40 +12,35 @@ class Solution{
     long long maxSubarraySum(int arr[], int n){
         
         // Your code here
-        int maxend=0,max=0;
-        int i,j,count=0;
-        
-        for(i=0;i<n;i++){
+        int max=0,maxend=0,count=0;
+        for(int i=0;i<n;i++){
             if(arr[i]<0){
                 count++;
             }
         }
         if(count==n){
             max=arr[0];
-            for(j=0;j<n;j++){
+            for(int j=0;j<n;j++){
                 if(arr[j]>max){
                     max=arr[j];
                 }
             }
         }
         else{
-            
-        for(i=0;i<n;i++){
-            maxend+=arr[i];
-            if(maxend<0){
-                maxend=0;
-                
-            }
-            if(maxend>max){
+            for(int i=0;i<n;i++){
+                maxend+=arr[i];
+                if(maxend<0){
+                    maxend=0;
+                }
+                if(maxend>max){
                     max=maxend;
                 }
+            }
+            
         }
-        } 
-        return max;
-        }
+    return max;
         
-        
-    
+    }
 };
 
 // { Driver Code Starts.
