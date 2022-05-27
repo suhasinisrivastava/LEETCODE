@@ -11,23 +11,24 @@ class Solution {
   public:
     int getMinDiff(int arr[], int n, int k) {
         // code here
+        if(n==1){
+            return 0;
+        }
+        
         sort(arr,arr+n);
-        int res=arr[n-1]-arr[0];
-        int small=arr[0]+k;
-        int big=arr[n-1]-k;
-        int i;
-        for(i=0;i<n-1;i++){
-            int maxa=max(arr[i]+k,big);
-            int mina=min(arr[i+1]-k,small);
-            if(mina<0){
+        int d=arr[n-1]-arr[0];
+        int maxi,mini;
+        for(int i=1;i<n;i++){
+            if(arr[i]-k<0){
                 continue;
             }
-            else{
-            res=min(res,maxa-mina);
-            }
+            maxi=max(arr[i-1]+k,arr[n-1]-k);
+            mini=min(arr[0]+k,arr[i]-k);
+            d=min(d,maxi-mini);
+            
         }
-        return res;
-    } 
+        return d;
+    }
 };
 
 // { Driver Code Starts.
