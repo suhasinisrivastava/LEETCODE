@@ -16,29 +16,28 @@ class Solution{
         //Your code here
         bool ans=false;
         
+        int maxend=0,max=0,ne=0,c=0;
         for(int i=0;i<n;i++){
             if(arr[i]==0){
                 return true;
             }
-            if(arr[i]<0){
-                ans=true;
+            else if(arr[i]<0){
+                ne++;
             }
         }
-        if(!ans){
+        if(ne==n || ne==0){
             return false;
         }
         for(int i=0;i<n;i++){
-            int sum=arr[i];
+            int s=arr[i];
             for(int j=i+1;j<n;j++){
-                sum+=arr[j];
-                if(sum==0){
+                s+=arr[j];
+                if(s==0){
                     return true;
                 }
-
             }
             
         }
-        
         return false;
         
         
