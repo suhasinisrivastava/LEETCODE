@@ -12,19 +12,21 @@ class Solution{
     //Function to return length of longest subsequence of consecutive integers.
     int findLongestConseqSubseq(int arr[], int N)
     {
-        int count=1,res=1;
         sort(arr,arr+N);
+        int count=1,maxi=0;
         for(int i=0;i<N;i++){
-            if(arr[i]+1==arr[i+1] || arr[i]==arr[i+1]){
-                if(arr[i]+1==arr[i+1]){
+            if(arr[i]+1==arr[i+1] ){
                 count++;
-                res=max(res,count);}
+            }
+            else if(arr[i]==arr[i+1] && count>1){
+                continue;
             }
             else{
+                maxi=max(maxi,count);
                 count=1;
             }
         }
-        return res;
+        return maxi;
       //Your code here
     }
 };
