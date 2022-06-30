@@ -10,33 +10,27 @@ class Solution{
   public:
     int minJumps(int arr[], int n){
         // Your code here
-        int ladder=arr[0];
-        int stair=arr[0];
-        int jump=1,level;
-        if(n==1){
+        int jumps=0;
+        int currend=0,maxreach=0,ladder=0;
+        if(arr[0]==0 && n==1){
             return 0;
         }
-        if(ladder==0){
-            return -1;
-        }
-        for(level=1;level<n;level++){
-            if(level==n-1){
-                return jump;
+        for(int i=0;i<n;i++)
+        {
+            maxreach=max(maxreach,arr[i]+i);
+            if(maxreach>=n-1){
+                return 1+jumps;
             }
-            if(arr[level]+level>ladder){
-                ladder=arr[level]+level;
+            if(i==maxreach){
+                return -1;
             }
-            stair--;
-            if(stair==0){
-                if(ladder<=level){
-            return -1;
-        }
-                jump++;
-                stair=ladder-level;
+            if(i==currend){
+                jumps++;
+                currend=maxreach;
             }
         }
+        return jumps;
         
-        return jump;
         
     }
 };
