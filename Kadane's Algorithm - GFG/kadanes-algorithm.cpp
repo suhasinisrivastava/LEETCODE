@@ -12,34 +12,25 @@ class Solution{
     long long maxSubarraySum(int arr[], int n){
         
         // Your code here
-        int max=0,maxend=0,count=0;
+        long long maxend=0,maxi=0,c=0;
         for(int i=0;i<n;i++){
             if(arr[i]<0){
-                count++;
+                c++;
             }
         }
-        if(count==n){
-            max=arr[0];
-            for(int j=0;j<n;j++){
-                if(arr[j]>max){
-                    max=arr[j];
-                }
-            }
-        }
-        else{
-            for(int i=0;i<n;i++){
-                maxend+=arr[i];
-                if(maxend<0){
-                    maxend=0;
-                }
-                if(maxend>max){
-                    max=maxend;
-                }
-            }
+        if(c==n){
+            sort(arr,arr+n);
+            return arr[n-1];
             
         }
-    return max;
-        
+        for(int i=0;i<n;i++){
+            maxend+=arr[i];
+            if(maxend<0){
+                maxend=0;
+            }
+            maxi=max(maxi,maxend);
+        }
+        return maxi;
     }
 };
 
