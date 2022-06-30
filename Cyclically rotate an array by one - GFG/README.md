@@ -25,7 +25,7 @@ A[] = {9, 8, 7, 6, 4, 2, 1, 3}
 <p style="user-select: auto;">&nbsp;</p>
 
 <p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Your Task:&nbsp;&nbsp;</strong><br style="user-select: auto;">
-You don't need to read input or print anything. Your task is to complete the function <strong style="user-select: auto;">rotate()</strong>&nbsp;which takes the array <strong style="user-select: auto;">A[]</strong> and its size <strong style="user-select: auto;">N </strong>as inputs and modify the array.</span></p>
+You don't need to read input or print anything. Your task is to complete the function <strong style="user-select: auto;">rotate()</strong>&nbsp;which takes the array <strong style="user-select: auto;">A[]</strong> and its size <strong style="user-select: auto;">N </strong>as inputs and modify the array in place.</span></p>
 
 <p style="user-select: auto;">&nbsp;</p>
 
