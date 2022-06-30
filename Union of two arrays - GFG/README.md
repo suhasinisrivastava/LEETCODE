@@ -39,6 +39,8 @@ union set of both arrays. So count is 7.</span></pre>
 <span style="font-size: 18px; user-select: auto;">1 ≤ n, m&nbsp;≤ 10<sup style="user-select: auto;">5</sup><br style="user-select: auto;">
 0 ≤ a[i], b[i] &lt;&nbsp;10<sup style="user-select: auto;">5</sup></span></p>
 
+<p style="user-select: auto;"><strong style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Elements are not necessarily distinct.</span></strong></p>
+
 <p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Expected Time Complexity </strong>: O((n+m)log(n+m))<br style="user-select: auto;">
 <strong style="user-select: auto;">Expected Auxilliary Space</strong> : O(n+m)</span></p>
  <p style="user-select: auto;"></p>
