@@ -15,15 +15,18 @@ class Solution{
     // k : find kth smallest element and return using this function
     int kthSmallest(int arr[], int l, int r, int k) {
         //code here
-        vector<int> v;
-        for(int i=0;i<r+1;i++){
-            v.push_back(arr[i]);
-        }
-        sort(v.begin(),v.end());
-        return v[k-1];
+        priority_queue<int> maxh;
+        for(int i=0;i<=r;i++){
+            maxh.push(arr[i]);
+            if(maxh.size()>k){
+                maxh.pop();
+            }
+            
         
         
         
+    }
+    return maxh.top();
     }
 };
 
