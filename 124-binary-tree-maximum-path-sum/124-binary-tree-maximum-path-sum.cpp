@@ -16,10 +16,12 @@ public:
         if(root==NULL){
             return 0;
         }
-        int ls=max(0,mh(root->left,maxi));
-        int rs=max(0,mh(root->right,maxi));
-        maxi=max(maxi,ls+rs+root->val);
-        return root->val+max(ls,rs);
+        int ls=mh(root->left,maxi);
+        int rs=mh(root->right,maxi);
+        int temp=max(max(ls,rs)+root->val,root->val);
+        int ans=max(temp,ls+rs+root->val);
+        maxi=max(maxi,ans);
+        return temp;
     }
     int maxPathSum(TreeNode* root) {
         if(root==NULL){
