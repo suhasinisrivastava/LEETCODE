@@ -1,27 +1,23 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        int z=0,o=0,t=0;
+        unordered_map<int,int> ump;
         for(int i=0;i<nums.size();i++){
-            if(nums[i]==0){
-                z++;
+            ump[nums[i]]++;
+        }
+        for(int i=0;i<nums.size();i++){
+            if(ump[0]>0){
+                nums[i]=0;
+                ump[0]--;
             }
-            else if(nums[i]==1){
-                o++;
+            else if(ump[1]>0){
+                nums[i]=1;
+                ump[1]--;
             }
-            else{
-                t++;
+            else if(ump[2]>0){
+                nums[i]=2;
+                ump[2]--;
             }
         }
-        for(int i=0;i<z;i++){
-            nums[i]=0;
-        }
-        for(int i=z;i<z+o;i++){
-            nums[i]=1;
-        }
-        for(int i=z+o;i<z+o+t;i++){
-            nums[i]=2;
-        }
-        //return nums;
     }
 };
