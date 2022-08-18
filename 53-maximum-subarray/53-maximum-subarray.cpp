@@ -1,25 +1,25 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int count=0,maxend=0,max=0;
+        int max=INT_MIN;
+        int maxend=0,s=0;
         for(int i=0;i<nums.size();i++){
             if(nums[i]<0){
-                count++;
+                s++;
             }
         }
-        if(count==nums.size()){
+        if(s==nums.size()){
             sort(nums.begin(),nums.end());
-            max=nums[nums.size()-1];
+            return nums[nums.size()-1];
+                
         }
-        else{
-            for(int i=0;i<nums.size();i++){
-                maxend+=nums[i];
-                if(maxend<0){
-                    maxend=0;
-                }
-                if(maxend>max){
-                    max=maxend;
-                }
+        for(int i=0;i<nums.size();i++){
+            maxend+=nums[i];
+            if(maxend<0){
+                maxend=0;
+            }
+            else if(maxend>max){
+                max=maxend;
             }
         }
         return max;
