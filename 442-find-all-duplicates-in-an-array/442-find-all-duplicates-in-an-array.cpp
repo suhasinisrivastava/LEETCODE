@@ -1,28 +1,17 @@
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
+        unordered_map<int,int>ump;
+        for(int i=0;i<nums.size();i++){
+            ump[nums[i]]++;
+        }
         vector<int>v;
-        sort(nums.begin(),nums.end());
-        int c=1;
-        for(int i=1;i<nums.size();i++){
-            if(nums[i]==nums[i-1]){
-                c++;
-                if(c==2){
-                    //cout<<1;
-                    v.push_back(nums[i-1]);
-                    c=1;
-                }
-            }
-           
-            else{
-                if(c==2){
-                    cout<<1;
-                    v.push_back(nums[i-1]);
-                    c=1;
-                }
+        for(auto it:ump){
+            if(it.second>1){
+                v.push_back(it.first);
             }
         }
-        return v;
         
+        return v;
     }
 };
