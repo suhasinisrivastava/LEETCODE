@@ -12,11 +12,11 @@ public:
                 umpt[words[i][j]]++;
             }
             
-            for(auto &it:ump){
-                it.second=min(it.second,umpt[it.first]);
+            for(unordered_map<char,int>::iterator it=ump.begin();it!=ump.end();it++){
+                (*it).second=min((*it).second,umpt[(*it).first]);
             }
             for(auto it:ump){
-            cout<<it.first;
+            cout<<it.first<<it.second;
         }
         }
         vector<string>v;
