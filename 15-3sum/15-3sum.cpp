@@ -1,35 +1,31 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>f;
         sort(nums.begin(),nums.end());
-        int n=nums.size();
-        int X=0;
-            vector<vector<int>>v;
-        if(n<3){
-            return v;
-        }
-    for(int i=0;i<n;i++){
-        int low=i+1;
-        int high=n-1;
-        while(low<high && (i==0 || nums[i]!=nums[i-1])){
-            int sum= nums[i]+nums[low]+nums[high];
-            if(sum==X){
-                v.push_back({nums[i],nums[low],nums[high]});
-                low++;
-                high--;
-            
-            }
-            
-            else if(sum<X){
-                low++;
-            }
-            else if(sum>X){
-                high--;
+        for(int i=0;i<nums.size();i++){
+            vector<int>v;
+            int l=i+1;
+            int r=nums.size()-1;
+            while(l<r && (i==0 || nums[i]!=nums[i-1])){
+                if(nums[l]+nums[i]+nums[r]==0){
+                    v.push_back(nums[i]);
+                    v.push_back(nums[l]);
+                    v.push_back(nums[r]);
+                    f.push_back(v);
+                    v.clear();
+                    l++;
+                    r--;
+                }
+                else if(nums[l]+nums[i]+nums[r]>0){
+                    r--;
+                }
+                else{
+                    l++;
+                }
             }
         }
-    }
-    v.erase(unique(v.begin(),v.end()),v.end());
-    return v;
-
+        f.erase(unique(f.begin(),f.end()),f.end());
+        return f;
     }
 };
