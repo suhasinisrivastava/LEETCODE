@@ -7,17 +7,18 @@ class Solution{
 public:
     int evenlyDivides(int N){
         //code here
+        int ans=N;
         int count=0;
-        int m=N;
         while(N>0){
-            int x=N%10;
-            if(x!=0){
-                
-            
-             if(m%x==0 && x!=0){
+            int d=N%10;
+            if(d==0){
+                N/=10;
+                continue;
+            }
+            else if(ans%d==0){
                 count++;
             }
-            }
+
             N/=10;
         }
         return count;
