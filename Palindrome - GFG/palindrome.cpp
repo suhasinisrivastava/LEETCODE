@@ -14,21 +14,16 @@ class Solution
 		string is_palindrome(int n)
 		{
 		    // Code here.
-		    int x=n;
 		    int rev=0;
-		    int count=0;
-		    while(x>0){
-		        int y=x%10;
-		        rev=rev*10+y;
-		        x/=10;
+		    int ans=n;
+		    while(n>0){
+		        rev=rev*10+(n%10);
+		        n/=10;
 		    }
-		    if(rev==n){
+		    if(ans==rev){
 		        return "Yes";
 		    }
-		    else {
-		        return "No";
-		    }
-		        
+		    return "No";
 		}
 };
 
