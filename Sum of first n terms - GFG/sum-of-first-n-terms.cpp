@@ -8,13 +8,9 @@ using namespace std;
 
 class Solution {
   public:
-  long long sum=0;
+    long long sum=0;
     long long sumOfSeries(long long N) {
         // code here
-        /*if(N>0){
-            sum+=N*N*N;
-            sumOfSeries(N-1);
-        }*/
         sum=(N*(N+1))/2;
         sum=sum*sum;
         return sum;
