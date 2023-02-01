@@ -11,7 +11,6 @@ class Solution {
         if(N>0){
             cout<<N<<" ";
             printNos(N-1);
-            
         }
     }
 };
