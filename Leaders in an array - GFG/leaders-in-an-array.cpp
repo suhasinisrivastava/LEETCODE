@@ -13,24 +13,19 @@ class Solution{
     public:
     vector<int> leaders(int a[], int n){
         // Code here
-          vector<int> v;
-        
-        long long max = a[n-1];
-        
-        //We start traversing the array from last element.
-        for(long long i =n-1; i >= 0; i--){
-            //Comparing the current element with the maximum element stored. 
-            //If current element is greater than max, we add the element.
-            if(a[i] >= max){
-                //Updating the maximum element.
-                max = a[i];
-                //Storing the current element in vector for leaders.
-                v.push_back(max);
+        int maxi=a[n-1];
+        vector<int>v;
+        for(int i=n-1;i>=0;i--){
+            if(i==n-1){
+                v.push_back(a[i]);
+            }
+            else if(a[i]>=maxi){
+                
+                v.push_back(a[i]);
+                maxi=a[i];
             }
         }
-        //Finally reversing the vector in which leaders are stored.
-        reverse(v.begin(), v.end());
-        //returning the vector.
+        reverse(v.begin(),v.end());
         return v;
     }
 };
