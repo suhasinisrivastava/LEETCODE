@@ -1,36 +1,48 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template for C++
 
 class Solution{   
 public:
-    int median(vector<vector<int>> &matrix, int r, int c){
-        // code here
-        vector<int> v;
-        int a;
-        for(int i=0;i<r;i++){
-            for(int j=0;j<c;j++){
-                v.push_back(matrix[i][j]);
+    int median(vector<vector<int>> &matrix, int R, int C){
+        // code here     
+        int mini=INT_MAX;
+        int maxi=INT_MIN;
+        for(int i=0;i<R;i++){
+            if(matrix[i][0]<mini){
+                mini=matrix[i][0];
+            }
+            if(matrix[i][C-1]>maxi){
+                maxi=matrix[i][C-1];
             }
         }
-        sort(v.begin(),v.end());
-        if(v.size()%2!=0){
-            a=v[v.size()/2];
+        int des=(R*C+1)/2;
+        while(mini<maxi){
+            int m=(mini+maxi)/2;
+            int places=0;
+            for(int i=0;i<R;i++){
+             places+=upper_bound(matrix[i].begin(),matrix[i].end(),m)-matrix[i].begin();
+            }
+            if(places<des){
+                mini=m+1;
+            }
+            else{
+                maxi=m;
+            }
         }
-        else{
-            a=(v[v.size()/2]+v[(v.size()/2)-1])/2;
-        }
-        return a;
+        return mini;
+        
     }
 };
 
-// { Driver Code Starts.
+
+//{ Driver Code Starts.
 
 int main()
 {
@@ -48,4 +60,5 @@ int main()
         cout<<obj.median(matrix, r, c)<<endl;        
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
