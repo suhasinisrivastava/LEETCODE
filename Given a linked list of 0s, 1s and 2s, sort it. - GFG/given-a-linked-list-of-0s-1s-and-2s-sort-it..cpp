@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -15,7 +15,7 @@ struct Node {
 struct Node *start = NULL;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*
  
   Node is defined as
@@ -36,46 +36,88 @@ class Solution
     Node* segregate(Node *head) {
         
         // Add code here
-        int c1=0,c2=0,c3=0;
+        Node *z=new Node(-1);
+        Node *o=new Node(-1);
+        Node *t=new Node(-1);
+        Node *a=z;
+        Node *b=o;
+        Node *c=t;
         Node *temp=head;
         while(temp!=NULL){
             if(temp->data==0){
-                c1++;
+                a->next=temp;
+                a=a->next;
+                temp=temp->next;
+                a->next=NULL;
+                
             }
             else if(temp->data==1){
-                c2++;
+                b->next=temp;
+                b=b->next;
+                temp=temp->next;
+                b->next=NULL;
+                
             }
             else{
-                c3++;
-            }
-            temp=temp->next;
-        }
-        temp=head;
-        while(temp!=NULL){
-            if(c1!=0){
-                temp->data=0;
+                c->next=temp;
+                c=c->next;
                 temp=temp->next;
-                c1--;
-            }
-            else if(c2!=0){
-                temp->data=1;
-                temp=temp->next;
-                c2--;
-            }
-            else if(c3!=0){
-                temp->data=2;
-                temp=temp->next;
-                c3--;
+                c->next=NULL;
+               
             }
             
         }
-        return head;
+        //return z->next;
+        if(z->next==NULL){
+            if(o->next==NULL){
+                if(t->next==NULL){
+                    return NULL;
+                }
+                return t->next;
+            }
+            else{
+                if(t->next==NULL){
+                    return o->next;
+                }
+                else{
+                    t=t->next;
+                    b->next=t;
+                    return o->next;
+                }
+            }
+        }
+        else{
+            if(o->next==NULL){
+                if(t->next==NULL){
+                    return z->next;
+                }
+                else{
+                    t=t->next;
+                    a->next=t;
+                    return z->next;
+                }
+            }
+            else{
+                o=o->next;
+                a->next=o;
+                if(t->next==NULL){
+                    return z->next;
+                }
+                else{
+                    t=t->next;
+                    b->next=t;
+                    return z->next;
+                }
+            }
+        }
+        return z->next;
+        
         
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 // Function to sort a linked list of 0s, 1s and 2s
 void printList(struct Node *Node) {
@@ -124,4 +166,5 @@ int main() {
     }
 
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
