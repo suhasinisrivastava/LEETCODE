@@ -81,21 +81,6 @@ bool verify(Node* head)
 
 
 // } Driver Code Ends
-/*
-struct Node
-{
-    int data;
-    Node * next;
-    Node * prev;
-    Node (int x)
-    {
-        data=x;
-        next=NULL;
-        prev=NULL;
-    }
-        
-};
-*/
 
 class Solution
 {
@@ -109,6 +94,10 @@ public:
         temp=temp->next;
         while(temp!=NULL){
             if(temp->data==prev->data){
+                if(temp->next==NULL){
+                    prev->next=NULL;
+                    return head;
+                }
                 while(temp!=NULL && temp->data==prev->data ){
                     temp=temp->next;
                 }
@@ -122,7 +111,7 @@ public:
             
             
         }
-        prev->next=NULL;
+        //prev->next=NULL;
         return head;
        
     }
