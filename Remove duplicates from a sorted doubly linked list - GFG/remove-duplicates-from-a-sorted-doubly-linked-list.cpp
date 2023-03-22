@@ -104,23 +104,27 @@ public:
     Node * removeDuplicates(struct Node *head)
     {
         // Your code here
-        Node* curr = head,*prev=head;
-        curr=curr->next;
-        while(curr!=NULL){
-            if(curr -> data == prev -> data) {
-                while(curr!= NULL && curr -> data == prev -> data) {
-                    curr = curr -> next;
+        unordered_map<int,int>ump;
+        Node *temp=head,*prev=head;
+        temp=temp->next;
+        while(temp!=NULL){
+            if(temp->data==prev->data){
+                while(temp!=NULL && temp->data==prev->data ){
+                    temp=temp->next;
                 }
-            }else {
-                prev -> next = curr;
-                curr -> prev = prev;
-                prev = curr;
-                curr = curr -> next;
+            }
+            else{
+                temp->prev=prev;
+                prev->next=temp;
+                prev=temp;
+                temp=temp->next;
             }
             
+            
         }
-        prev -> next = NULL;
+        prev->next=NULL;
         return head;
+       
     }
 };
 
