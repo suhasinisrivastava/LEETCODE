@@ -6,33 +6,59 @@ using namespace std;
 class Solution
 {
 	public:
+	
+	int findpar(int node, vector<int>&par){
+	    if(node==par[node]){
+	        return node;
+	    }
+	    return par[node]=findpar(par[node],par);
+	}
+	void findunion(int x, int y, vector<int>&rank, vector<int>&par){
+	    int u=findpar(x,par);
+	    int v=findpar(y,par);
+	    
+	    if(rank[u]<rank[v]){
+	        par[u]=v;
+	    }
+	    else if(rank[u]>rank[v]){
+	        par[v]=u;
+	    }
+	    else{
+	        par[u]=v;
+	        rank[v]++;
+	    }
+	}
 	//Function to find sum of weights of edges of the Minimum Spanning Tree.
     int spanningTree(int V, vector<vector<int>> adj[])
     {
         // code here
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        pq.push({0,0});
-        vector<int>vis(V,0);
-        int sum=0;
-        while(!pq.empty()){
-            int node=pq.top().second;
-            int wt=pq.top().first;
-            pq.pop();
-            if(vis[node]==1){
-                continue;
-            }
-            vis[node]=1;
-            sum+=wt;
-            for(auto it:adj[node]){
-                int adj=it[0];
-                int nwt=it[1];
-                if(!vis[adj]){
-                    pq.push({nwt,adj});
-                }
-                
+        vector<pair<int,pair<int,int>>>v;
+        for(int i=0;i<V;i++){
+            for(auto it:adj[i]){
+                //cout<<it[1];
+                v.push_back({it[1],{i,it[0]}});
             }
         }
-        return sum;
+        sort(v.begin(),v.end());
+        // for(auto it:v){
+        //     cout<<it.first<<" ";
+        // }
+        vector<pair<int,int>>mst;
+        vector<int>par(V);
+        for(int i=0;i<V;i++){
+            par[i]=i;
+        }
+        vector<int>rank(V,0);
+        int cost=0;
+        for(auto it:v){
+            if(findpar(it.second.first,par)!=findpar(it.second.second,par)){
+                cost+=it.first;
+                mst.push_back({it.second.first,it.second.second});
+                findunion(it.second.first,it.second.second,rank,par);
+            }
+            
+        }
+        return cost;
     }
 };
 
